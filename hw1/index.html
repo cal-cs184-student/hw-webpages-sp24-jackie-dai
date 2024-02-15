@@ -1,7 +1,688 @@
-<html>
-	<head>
-	</head>
-	<body>
-		Homework 1 index.html here
-	</body>
-</html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CS 184 - HW 1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5aa5640d-3c19-48db-980e-75da010de53b" class="page sans"><header><h1 class="page-title">CS 184 - HW 1</h1><p class="page-description"></p></header><div class="page-body"><p id="d2224f01-e991-44b9-9f14-3cde7e319428" class="">
+</p><h2 id="e1dd10ff-8897-4123-b517-5d01ca8787dc" class="">Overview</h2><p id="a1446818-8d8d-4660-892d-2dd744a55910" class="">In this homework, we <mark class="highlight-yellow_background">rasterized triangles</mark> given its vertices. The rasterization process involves running the <strong>Three Line Tests</strong> to check whether not the pixels in the buffer were inside or outside the triangle. Then using a <mark class="highlight-yellow_background">texture map and mip maps</mark>, we found the corresponding screen space and texture space coordinates using <strong>Barycentric Coordinates</strong>. This allowed us to map the pixels to their appropriate colors. For both operations we implemented <mark class="highlight-yellow_background">supersampling</mark>, which allows us to manipulate the sampling rate and resolution to anti-alias the image.</p><p id="e083ac90-70d9-4b8f-9f1c-c5c077d7aad7" class="">
+</p><h2 id="c4367019-349d-4d89-94cf-e41ae6fc3555" class="">Task 1 - Drawing Single-Color Triangles</h2><p id="c967eae6-d20a-4dca-b3b1-f8b6cbceefcd" class="">First, we had to implement the <code>rasterize_triangles()</code> function where we were given three vertices that represented the points of the triangles and a <code>Color</code> object to fill the triangle with. We first created a bounding box containing just the triangle we were given. This optimized our code by giving us a box of points that were closest to to the given triangle. We then iterated through each point in the bounding box and conducted a line test. The line test consisted of taking the dot product between a point/vector and a line on the triangle. This could return three values:</p><p id="d39609f4-0bea-4532-b940-d90c73b05eff" class="">
+</p><p id="2ad5c717-fa86-4420-acd0-380b9dcf6851" class=""> “-”: the point is below the line of the triangle</p><p id="8a34781b-9024-4b57-bf1d-8a347c8c0958" class="">“=”: the point is on the line of the triangle</p><p id="a910899c-c44c-4529-b1ad-bea0328327fb" class="">“+”: the point is above the line of the triangle</p><p id="5dc8b463-4217-48dd-b112-34d06b0d870f" class="">
+</p><p id="ce4d8d93-9633-482b-83c1-b2b023698a6b" class="">For each point we iterated through, the line test was conducted three times for each line of the triangle. If the values returned for all three line tests were either “+++” or “—-”, this means that point is inside the triangle, and we would then fill the point with our given color.</p><figure id="172b9589-9b6d-4520-a69c-9a4d109448ed" class="image" style="text-align:left"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled.png"><img style="width:576px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled.png"/></a></figure><p id="ea445a3d-f311-4451-8b4e-7d20d5fb8849" class="">
+</p><h2 id="195c7784-0c4c-4b98-88d0-4ee676ce4bd4" class="">Task 2 - Antialiasing by Super-sampling</h2><p id="d6494bda-c6fc-493e-bf6b-40b3d6d58876" class="">In our supersampling algorithm, we split each individual pixel into sampling rate number of pixels by resizing our <code>sample_buffer</code> each time the either the sampling rate or the screen size was changed with <code>width * height * rate</code>. This allowed us to run the Three Line Tests on more pixels and downsample the pixels’ colors (take the average of the supersampled pixels within the original pixel).</p><p id="876fd799-53c7-47e9-8d93-0f150119dbed" class="">Supersampling is useful because it adjusts the resolution of an image to the screen, while applying anti-aliasing. Supersampling removes aliasing by averaging out the high frequencies and then sampling at a lower resolution/frequency while maintaining the same quality of a high resolution/frequency image.</p><p id="c589c2ef-ae5d-4b0f-956d-0dd977909aa2" class="">The modifications we made to the rasterization pipeline were: creating a quadruple for loop instead of a double for loop to account for the iteration of supersampled pixels, indexing by a factor of the square root of the sampling rate <code>sample_buffer[y * (width * sqSr) + x]</code> instead of just the width to properly traverse columns and rows of the array, assigning the sampling rate number of pixels a color in <code>fill_pixel()</code> instead of just 1, and calculating the appropriate offset (distance of the super sampled center in relation to the corner of the original pixel).</p><p id="bac963fa-d776-42f5-81c7-127acd7bdce1" class="">Sample rates</p><div id="453f702b-6743-47ef-b180-cb0844ea4fcd" class="column-list"><div id="102f27ed-3c02-4e45-b5d8-6827330f0da0" style="width:50%" class="column"><figure id="2da99121-ca85-4a64-a782-567beb9ac4ea" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%201.png"><img style="width:634px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%201.png"/></a><figcaption>sample rate: 1</figcaption></figure></div><div id="72822921-32f4-4a5d-a9ae-39d4e081060d" style="width:50%" class="column"><figure id="e0c28b60-7d22-417a-8806-0f71321b0c68" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%202.png"><img style="width:634px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%202.png"/></a><figcaption>sample rate: 4</figcaption></figure></div></div><div id="ab699b98-3c5d-4075-a44d-f03a928043ae" class="column-list"><div id="9c18e09f-2c46-452a-a53a-653d2d04baf8" style="width:50.000000000000014%" class="column"><figure id="208a8223-97e4-4b51-a8e0-fd3e9f56b190" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%203.png"><img style="width:634px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%203.png"/></a><figcaption>sample rate: 9</figcaption></figure><p id="be3ee3e5-c004-4dfa-a3cf-7f59a582cb4d" class="">
+</p></div><div id="c5ac1c77-6ce2-4299-bf15-40553898cc03" style="width:50%" class="column"><figure id="064a58e5-fcaa-4d39-9d37-99c9d59fb3f7" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%204.png"><img style="width:636px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%204.png"/></a><figcaption>sample rate: 16</figcaption></figure><p id="c64eb9ae-bf4e-4636-8e0f-f05a46c7c6b8" class="">
+</p></div></div><p id="43746134-e33b-4568-96fe-c6c28fbdce6e" class="">
+</p><h2 id="cb4738d5-05f5-4a9c-8730-40f20085b614" class="">Task 3- Transforms</h2><p id="9350a611-4eb7-4515-accd-9e3be702d702" class="">We were trying to pose cubeman like he was hopping into the air and clapping his feet together like a cartoon character does when they get really happy.</p><figure id="92dae959-4d06-45be-8683-a17a93dbfb98" class="image" style="text-align:left"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%205.png"><img style="width:480px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%205.png"/></a></figure><h2 id="d71782f4-6b0c-433f-a1a1-b854b9f0379a" class="">Task 4 - Barycentric Coordinates</h2><p id="919c1dce-e7c1-4e85-b533-0eb5f1c66f14" class="">Barycentric coordinates describe the position of a coordinate in relation to the 3 vertices of a triangle. The coefficients are like the strength that the vertex has on the coordinate, or how much the vertex pulls on the coordinate.</p><figure id="e92891d0-0ded-4547-97c2-fbdb791b452e" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%206.png"><img style="width:795px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%206.png"/></a></figure><p id="e82f157e-f08d-4813-9b66-aabe27b38c15" class="">For instance, the midpoint of this triangle would have alpha, beta, and omega values of 1/3 since each vertex is pulling on the coordinate equally. As a result, the color in the center is brown (a mix of red, green, and blue).</p><figure id="bc03c17a-8934-4504-9fd3-0a57fc509933" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%207.png"><img style="width:797px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%207.png"/></a></figure><h2 id="da69f61d-7f4f-43e8-a6f2-f1bb25ace562" class="">Task 5 - “Pixel Sampling” for Texture Mapping  </h2><p id="84192d4b-1616-4555-90ea-d890dd579b33" class="">Pixel sampling is the process of mapping a coordinate in screen space (x, y) to its corresponding coordinate in texture space (u, v). In order to perform texture mapping we used pixel sampling to map the coordinate and get its color value, along with the pixel’s neighboring color values.</p><p id="8751cb42-203a-435e-baab-95fdfd3cbd8d" class="">Nearest-neighbor and bilinear sampling were the two different pixel sampling methods that we used. Nearest-neighbor takes (u, v) and rounds the values to the nearest integer, which is used in the <code>get_texel()</code> call. Bilinear is similar, as we round (u, v) to the nearest integer, but we also find its 4 neighbors by adding an offset of <code>0.5f</code>. Using these 4 neighbors, we interpolate between their color values based on the position of (u, v).</p><div id="f443cb6f-3e7a-41b5-9a23-e896de659d0e" class="column-list"><div id="21d4f784-9281-43dc-98ba-9afd2dc2fb7a" style="width:50%" class="column"><figure id="e15d75bd-bf56-4e43-afe5-6647b558cd42" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%208.png"><img style="width:796px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%208.png"/></a><figcaption>Nearest Sampling</figcaption></figure></div><div id="ce3cf62b-9b27-4d75-aad2-bf4bb9958bd8" style="width:50%" class="column"><figure id="b8f1f338-d15b-479e-aa2d-c67a533c087d" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%209.png"><img style="width:793px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%209.png"/></a><figcaption>Bilinear Sampling</figcaption></figure></div></div><div id="7806c185-e587-4b40-ad39-d1c9bbd4c8c9" class="column-list"><div id="2ebda2a3-6736-473a-8058-6335531c572d" style="width:50%" class="column"><figure id="b94897f2-da4e-4b9e-a91a-c15cc4debcfd" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2010.png"><img style="width:795px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2010.png"/></a><figcaption>Nearest Sampling, Sampling Rate = 1</figcaption></figure><figure id="c36d42ab-c608-47f1-819c-69fac9fe4c27" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2011.png"><img style="width:797px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2011.png"/></a><figcaption>Bilinear Sampling, Sampling Rate = 1</figcaption></figure></div><div id="07b950f4-bcba-43f8-a270-87a2ebecbb76" style="width:50%" class="column"><figure id="ad2562f5-43f9-4d93-a1ca-77b89ee7033e" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2012.png"><img style="width:794px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2012.png"/></a><figcaption>Nearest Sampling, Sampling Rate = 16</figcaption></figure><figure id="d78cd445-fb1f-4a5d-a95d-9a3a28f6dc3e" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2013.png"><img style="width:796px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2013.png"/></a><figcaption>Bilinear Sampling, Sampling Rate = 16</figcaption></figure></div></div><p id="6c340514-17cb-4c17-9867-828fe3f9def9" class="">The nearest sample images are slightly brighter than the bilinear sample images. There are also more obvious jaggies in the nearest sample images compared to the bilinear sample images for both sampling rates.</p><p id="37afbf1c-f3fd-46fa-985c-3d4c25cc8768" class="">The difference between nearest-neighbor and bilinear sampling is that bilinear sampling generally produces smoother images. This is because we interpolate between color values instead of having a binary mapping (essentially using another form of averaging). There will be a large difference between the two methods when there is an image where the colors at neighboring pixels vary greatly. Following the logic from above, if (u, v) had RGB neighbors, nearest-neighbor would assign (x, y) either red, green, or blue depending on which pixel it is closest to. Meanwhile, bilinear sampling would interpolate between the 3 colors and produce a color somewhere with the SVG RGB triangle example in Task 4.</p><h2 id="b9e9c0c5-d992-434c-a450-8c82cf551297" class="">Task 6 - “Level sampling” with Mipmaps for texture mapping</h2><p id="5b71602a-8353-456a-bda3-9571592e8a8b" class="">Level sampling is the process of pixel sampling by selecting different levels of the mipmap. We implemented it using the zeroth level, the nearest level, and the bilinear level (interpolating between adjacent levels).</p><table id="d8ed9429-6ec2-460f-9f8b-45668bb1dbd9" class="simple-table"><tbody><tr id="4b54158a-c75e-4f24-87e1-522d01d4e8a0"><td id="~xde" class="">Technique</td><td id="MPt_" class=""><strong>Speed</strong></td><td id="NURe" class=""><strong>Memory Usage</strong></td><td id="g?Yr" class=""><strong>Antialiasing Power</strong></td></tr><tr id="82a7c9a6-ece8-4189-a5d5-e548e343af78"><td id="~xde" class=""><strong>Pixel Sampling</strong></td><td id="MPt_" class="">Fast</td><td id="NURe" class="">A relative amount of memory is used</td><td id="g?Yr" class="">A fair amount (but could be much better)</td></tr><tr id="7d58839e-4526-4e8d-8d61-f275c209663e"><td id="~xde" class=""><strong>Level Sampling</strong></td><td id="MPt_" class="">Negative relationship</td><td id="NURe" class="">Positive relationship</td><td id="g?Yr" class="">Positive Relationship</td></tr><tr id="70eaea38-226a-440d-9533-3747f847b607"><td id="~xde" class=""><strong>Number of Samples per Pixel</strong></td><td id="MPt_" class="">Negative relationship</td><td id="NURe" class="">Positive relationship</td><td id="g?Yr" class="">Positive relationship</td></tr></tbody></table><div id="4b02ea34-d63d-4afc-8e03-06973cdacefc" class="column-list"><div id="a087b103-5bea-457c-ac9d-537197af0a06" style="width:50%" class="column"><figure id="29db94e5-b3a0-4337-a410-70d51b4cbe63" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2014.png"><img style="width:788px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2014.png"/></a><figcaption>P_ZERO and P_NEAREST</figcaption></figure><figure id="bea14677-7f1c-442e-ab01-0c0708cf4225" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2015.png"><img style="width:791px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2015.png"/></a><figcaption>P_NEAREST and P_NEAREST</figcaption></figure><p id="71ee3772-25ea-45be-b9cb-bc350f3b33be" class="">
+</p><p id="f74e9cfc-f60a-424b-b695-0a2995a5665b" class="">
+</p></div><div id="54cd5597-3332-46a2-9a4c-a22933066ab2" style="width:50%" class="column"><figure id="9e2da1b4-955b-4a24-9d18-ff776fe723d4" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2016.png"><img style="width:788px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2016.png"/></a><figcaption>P_ZERO and P_LINEAR</figcaption></figure><figure id="791ca60d-3513-4d83-b746-66f68ede8148" class="image"><a href="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2017.png"><img style="width:793px" src="CS%20184%20-%20HW%201%205aa5640d3c1948db980e75da010de53b/Untitled%2017.png"/></a><figcaption>P_NEAREST and P_LINEAR</figcaption></figure><p id="f48c2a57-9e22-494c-8a62-c3ee3f3f016c" class="">
+</p></div></div><p id="b305a997-beef-4841-a55b-a123a59c66c3" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
